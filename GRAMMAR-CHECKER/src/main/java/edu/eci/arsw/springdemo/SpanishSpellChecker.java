@@ -1,9 +1,12 @@
 package edu.eci.arsw.springdemo;
 
+import org.springframework.stereotype.Component;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-
+//@Component("SpanishChecker")
 public class SpanishSpellChecker implements SpellChecker {
+
 
 	@Override
 	public String checkSpell(String text) {
