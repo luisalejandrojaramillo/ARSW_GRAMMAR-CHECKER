@@ -68,6 +68,84 @@ public class InMemoryPersistenceTest {
                 
         
     }
+    @Test
+    public void saveBlueprins() {
+    	 InMemoryBlueprintPersistence ibpp=new InMemoryBlueprintPersistence();        
+         Point[] pts=new Point[]{new Point(0, 0),new Point(10, 10)};
+         Blueprint bp=new Blueprint("fernando", "music",pts);
+         Blueprint bp1=new Blueprint("luis", "video",pts);
+         Blueprint bp2=new Blueprint("carlos", "foto",pts);
+         Blueprint bp3=new Blueprint("juan", "pintura",pts);
+         try {
+			ibpp.saveBlueprint(bp);
+			ibpp.saveBlueprint(bp1);
+			ibpp.saveBlueprint(bp2);
+			ibpp.saveBlueprint(bp3);
+			assertEquals((ibpp.getAllBlueprints()).size(),5);
+		} catch (BlueprintPersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BlueprintNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    }
+    @Test
+    public void loadBlueprins() {
+    	 InMemoryBlueprintPersistence ibpp=new InMemoryBlueprintPersistence();        
+         Point[] pts=new Point[]{new Point(0, 0),new Point(10, 10)};
+         Blueprint bp=new Blueprint("fernando", "music",pts);
+         Blueprint bp1=new Blueprint("luis", "video",pts);
+         Blueprint bp2=new Blueprint("carlos", "foto",pts);
+         Blueprint bp3=new Blueprint("juan", "pintura",pts);
+         try {
+        	ibpp.saveBlueprint(bp);
+ 			ibpp.saveBlueprint(bp1);
+ 			ibpp.saveBlueprint(bp2);
+ 			ibpp.saveBlueprint(bp3);
+			Blueprint bp4=ibpp.getBlueprint("fernando", "music");
+			System.out.println(bp4.getAuthor());
+			assertEquals(bp4.getAuthor(),"fernando");
+			Blueprint bp5=ibpp.getBlueprint("juan", "pintura");
+			assertEquals(bp5.getAuthor(),"juan");
+			Blueprint bp6=ibpp.getBlueprint("carlos", "foto");
+			assertEquals(bp6.getName(),"foto");
+         }	
+		catch (BlueprintNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BlueprintPersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+         
+         
+    	
+    }
+    @Test
+    public void loadBlueprinsOfAuthorSpecific() {
+    	 InMemoryBlueprintPersistence ibpp=new InMemoryBlueprintPersistence();        
+         Point[] pts=new Point[]{new Point(0, 0),new Point(10, 10)};
+         Blueprint bp=new Blueprint("fernando", "music",pts);
+         Blueprint bp1=new Blueprint("luis", "video",pts);
+         Blueprint bp2=new Blueprint("carlos", "foto",pts);
+         Blueprint bp3=new Blueprint("juan", "pintura",pts);
+         try {
+        	ibpp.saveBlueprint(bp);
+ 			ibpp.saveBlueprint(bp1);
+ 			ibpp.saveBlueprint(bp2);
+ 			ibpp.saveBlueprint(bp3);
+			assertEquals((ibpp.getBlueprintsByAuthor("juan")).size(),1);
+         }	
+		catch (BlueprintNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BlueprintPersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
 
     
