@@ -23,4 +23,4 @@ mvn exec:java -D exec.mainClass="edu.eci.arsw.blueprints.services.BlueprintServi
 $ mvn test
 ```
 ## License
-This project is under the Apache license - see [LICENSE](LICENSE.md) for more details.
+This project is under the Apache license - see [LICENSE](LICENSE.txt) for more details.
